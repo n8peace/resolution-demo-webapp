@@ -42,3 +42,24 @@ h4{
 .info-center{
     text-align: center;
 }
+
+.primaryDomain, .domainName{
+    border-radius: 5pt;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #eeee;
+}
+
+.primaryDomain{
+    background-color: #a70eff;
+}
+
+.domainName{
+    background-color: #0E67FF;
+}

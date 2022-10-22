@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../stylesheets/ResolutionAnimatedDemo.css"
+import udLogo from "../assets/ud-logo-lockup.svg"
 
 import DomainBar from "./DomainBar";
 import ReverseDemo from "./ReverseDemo";
@@ -24,6 +25,11 @@ function ResolutionAnimatedDemo(){
         getUnsTlds();
     }, []);
 
+    const clearDemoArea = () =>{
+        setReverseDemo(false)
+        setUnsDemo(false)
+    }
+
     const handleInput = (userInput) => {
         console.log("Got: ",userInput)
         console.log("Checking if 0x... address or domain")
@@ -31,10 +37,12 @@ function ResolutionAnimatedDemo(){
         console.log("UNS TLDs: ",unsTlds)
         if(ethRegex.test(userInput)){
             // 0x address
+            clearDemoArea()
             setReverseDemo(true)
             console.log("This is a 0x address, will do reverse resolution demo")
         } else if (unsTlds.includes(userInput.split('.').pop())){
             // UNS address
+            clearDemoArea()
             setUnsDemo(true)
             console.log("This is a UNS TLD, will do UNS resolution demo")
         }else(
@@ -51,6 +59,7 @@ function ResolutionAnimatedDemo(){
 
     return(
         <div id="resolutionAnimatedDemo">
+            <img src={udLogo} style={{ height: 100, width: 200, alignSelf: "right"}} alt="udlogo"/>
             <h1>Web3 Domains Demo</h1>
             <p>This will give you an example of how both Resolution and Reverse Resolution works!</p>
             <h3>Resolution = Phonebook </h3>
@@ -61,7 +70,7 @@ function ResolutionAnimatedDemo(){
             <p>(Hint: try jim-unstoppable.x if you're stuck)</p>
             <DomainBar inputHandler={setUserInput}/>
             {unsDemo && <UnsDemo domain={userInput}/>}
-            {reverseDemo && <ReverseDemo />}
+            {reverseDemo && <ReverseDemo address={userInput}/>}
         </div>
     )
 }
