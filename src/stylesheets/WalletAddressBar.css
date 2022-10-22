@@ -1,0 +1,68 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+h2{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.wallet-address-bar {
+    font-size: 14px;
+    position: relative;
+    --field-padding: 22px;
+}
+
+.wallet-address-bar input {
+    border: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #f2f2f2;
+    padding: 12px;
+    border-radius: 3px;
+    width: 70%;
+    padding: var(--field-padding);
+    font-size: 18px;
+    text-align: center;
+    /*background-image: url("../../public/ud.png");*/
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-repeat: no-repeat;
+    background-position: 60%;
+    background-size: 2%;
+}
+
+.wallet-address-bar input:focus{
+    outline: none !important;
+    border:1px solid rgb(0, 115, 255);
+    box-shadow: 0 0 10px #719ECE;
+    background-image: none;
+}
+
+.wallet-address-bar input:focus::placeholder{
+    color: transparent;
+}
+
+
+.wallet-address-bar::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    opacity: 1; /* Firefox */
+    text-align: center;
+}
+  
+.wallet-address-bar:focus::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: transparent;
+}
+
+.wallet-address-bar:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+  
+.wallet-address-bar::-ms-input-placeholder { /* Microsoft Edge */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.almost-there{
+    text-align: center;
+    font-family: Arial, 'Arial Narrow';
+}

@@ -1,0 +1,18 @@
+.resolutionJson{
+    width: 70%;
+    text-align: left;
+    border: 1pt solid rgb(34, 34, 34);
+    margin: auto;
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+pre {
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+   }
