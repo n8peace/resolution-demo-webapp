@@ -51,7 +51,7 @@ function ResolutionAnimatedDemo(){
 
     return(
         <div id="resolutionAnimatedDemo">
-            <h1>Web3 Domain Resolution Demo</h1>
+            <h1>Web3 Domains Demo</h1>
             <p>This will give you an example of how both Resolution and Reverse Resolution works!</p>
             <h3>Resolution = Phonebook </h3>
             <p>Resolution takes in a domain name and returns back the wallet addresses configured for that domain</p>
