@@ -1,3 +1,9 @@
+.resolutionJson, pre, h4, .info, .info-center, .primaryDomain, .domainName{
+    animation-name: animate-slideup;
+    animation-duration: 2s;
+    animation-fill-mode: backwards;
+}
+
 .resolutionJson{
     width: 70%;
     text-align: left;
@@ -23,7 +29,6 @@ h4{
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 40px;
     padding: 5px;
     padding-left: 20px;
     padding-right: 20px;
@@ -62,4 +67,23 @@ h4{
 
 .domainName{
     background-color: #0E67FF;
+}
+
+.alert{
+    background-color: rgb(240, 169, 148);
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 10pt;
+}
+
+
+@keyframes animate-slideup {
+    from{
+        margin-top: 100%
+    }
+
+    to{
+        margin-top: 10%;
+    }
 }

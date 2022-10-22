@@ -45,9 +45,10 @@ function ResolutionAnimatedDemo(){
             clearDemoArea()
             setUnsDemo(true)
             console.log("This is a UNS TLD, will do UNS resolution demo")
-        }else(
-            alert("Sorry, that input doesn't seem valid. Try a 0x style adddress or a UNS Web3 domain like jim-unstoppable.nft")
-        )
+        }else{
+            clearDemoArea()
+            alert("Sorry, "+userInput+" is not a valid format. Try a 0x... address or a domain like jim-unstoppable.x")
+        }
     }
 
     useEffect( ()=>{
@@ -62,12 +63,13 @@ function ResolutionAnimatedDemo(){
             <img src={udLogo} style={{ height: 100, width: 200, alignSelf: "right"}} alt="udlogo"/>
             <h1>Web3 Domains Demo</h1>
             <p>This will give you an example of how both Resolution and Reverse Resolution works!</p>
-            <h3>Resolution = Phonebook </h3>
-            <p>Resolution takes in a domain name and returns back the wallet addresses configured for that domain</p>
-            <h3>Reverse Resolution = Caller ID </h3>
-            <p>Reverse Resolution takes in an address and returns the <b>primary</b> domain for that address</p>
+            <h2> What Are These Terms?</h2>
+            <p className="titleInfo"><b>Resolution</b> is used to turn a domain name into a wallet address.<br/><b>Reverse Resolution</b> is used to turn a wallet address into a domain name</p>
+            <p className="titleInfo">Think about it this way. Resolution is like using a phone book - you know someone's name but don't know their phone number. Reverse resolution is like using caller ID - you saw a missed call from a number you don't recognize and want to find out who it belongs to.</p>
+            <h2>Technical Documentation</h2>
+            <p className="titleInfo">Unstoppable's <a href="https://docs.unstoppabledomains.com/developer-toolkit/resolution-integration-methods/resolution-service/overview/">Resolution Service API</a> is easy to use and supports many additional features not covered here.</p>
             <h2>Try It Yourself!</h2>
-            <p>(Hint: try jim-unstoppable.x if you're stuck)</p>
+            <p className="hint">Hint: try <i>jim-unstoppable.x</i> if you're stuck</p>
             <DomainBar inputHandler={setUserInput}/>
             {unsDemo && <UnsDemo domain={userInput}/>}
             {reverseDemo && <ReverseDemo address={userInput}/>}

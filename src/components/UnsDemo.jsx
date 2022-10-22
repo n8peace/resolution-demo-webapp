@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import "../stylesheets/Resolution.css"
 import ClaimsTable from "./ClaimsTable";
+import loadingGif from "../assets/loading-text.gif"
 
 function UnsDemo(props){
 
     const [domainData,setDomainData] = useState({});
     const [singlechainData, setSinglechainData] = useState({});
     const [multichainData, setMultichainData] = useState({});
+    const [isRegistered, setIsRegistered] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const getSinglechainData = (data) =>{
         let records = data["records"]
@@ -46,9 +49,14 @@ function UnsDemo(props){
                 Authorization: 'Bearer 67c85c9d-0123-447f-9662-971534f96319',
                 },
             };
+        setLoading(true)
         const response = await fetch(url, options);
         const data = await response.json();
         setDomainData(data)
+        setLoading(false)
+        if(data["meta"]["owner"]){
+          setIsRegistered(true);  
+        }
         }
         if (props.domain){
             unsResolve(props.domain)
@@ -66,18 +74,29 @@ function UnsDemo(props){
         <div id="unsDemo">
             <h2>UNS Resolution</h2>
             <h3>{props.domain}</h3>
-            <h4>Owner Details</h4>
-            <div className="info">These are all details about the wallet that owns the domain. Note that this is independent to currency records, which are shown later. <br/><br/>The <i>owner</i> is the wallet address that owns the domain. The <i>resolver</i> and <i>registry</i> relate to the smart contracts</div>
-            <ClaimsTable showTitle={false} data={domainData["meta"]}/>
-            <h4>Single Chain Records</h4>
-            <div className="info">These are crypto records labeled as "single chain" in UD domain management tool. Notice the json key syntax is crypto.SYMBOL.address </div>
-            <ClaimsTable showTitle={false} data={singlechainData}/>
-            <h4>Multi Chain Records</h4>
-            <div className="info">These are crypto records that have multiple chain options for a given currency in UD domain management tool. Notice the json key syntax is different than with single chain records, and includes a field for the chain.</div>
-            <ClaimsTable showTitle={false} data={multichainData}/>
-            <h4>Full Resolution Data</h4>
-            <div className="info-center">The full response from the API</div>
-            <div className="resolutionJson"><pre>{JSON.stringify(domainData, null, 2) }</pre></div>
+            {!loading && <div id="demoArea">
+                { isRegistered && <div id="registeredDomainDetails">
+                    <h4>Owner Details</h4>
+                    <div className="info">These are all details about the wallet that owns the domain. Note that this is independent to currency records, which are shown later. <br/><br/>The <i>owner</i> is the wallet address that owns the domain. The <i>resolver</i> and <i>registry</i> relate to the smart contracts</div>
+                    <ClaimsTable showTitle={false} data={domainData["meta"]}/>
+                    <br/><br/>
+                    <h4>Single Chain Records</h4>
+                    <div className="info">These are crypto records labeled as "single chain" in UD domain management tool. Notice the json key syntax is crypto.SYMBOL.address </div>
+                    <ClaimsTable showTitle={false} data={singlechainData}/>
+                    <br/><br/>
+                    <h4>Multi Chain Records</h4>
+                    <div className="info">These are crypto records that have multiple chain options for a given currency in UD domain management tool. Notice the json key syntax is different than with single chain records, and includes a field for the chain.</div>
+                    <ClaimsTable showTitle={false} data={multichainData}/>
+                    <br/><br/>
+                </div>}
+                { !isRegistered && <div className="alert">❗This domain isn't minted yet. Try another one for more data.</div>}
+                <h4>Full Resolution Data</h4>
+                <div className="info-center">The full response from the API</div>
+                <div className="resolutionJson"><pre>{JSON.stringify(domainData, null, 2) }</pre></div>
+            </div>}
+            {loading && <div className="loading-gif-container">
+                <img src={loadingGif} alt="loading..." />
+            </div>}
             <br/><br/><br/><br/><br/><br/><br/><br/>
         </div>
     )
