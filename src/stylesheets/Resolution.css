@@ -77,6 +77,14 @@ h4{
     padding: 10pt;
 }
 
+.noDomainMessage{
+    background-color: #0E67FF;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 10pt;
+}
 
 @keyframes animate-slideup {
     from{
