@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../stylesheets/Resolution.css"
 import ClaimsTable from "./ClaimsTable";
 import loadingGif from "../assets/loading-text.gif"
+import DomainCard from "./DomainCard";
 
 function UnsDemo(props){
 
@@ -76,6 +77,7 @@ function UnsDemo(props){
             <h3>{props.domain}</h3>
             {!loading && <div id="demoArea">
                 { isRegistered && <div id="registeredDomainDetails">
+                    <DomainCard domain={props.domain}/>
                     <h4>Owner Details</h4>
                     <div className="info">These are all details about the wallet that owns the domain. Note that this is independent to currency records, which are shown later. <br/><br/>The <i>owner</i> is the wallet address that owns the domain. The <i>resolver</i> and <i>registry</i> relate to the smart contracts</div>
                     <ClaimsTable showTitle={false} data={domainData["meta"]}/>

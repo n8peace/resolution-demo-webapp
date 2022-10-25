@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "../stylesheets/Resolution.css"
 import loadingGif from "../assets/loading-text.gif"
+import DomainCard from "./DomainCard"
 
 const getDomainsByOwner = async(address,resultsHandler,loadingHandler) =>{
     loadingHandler(true)
@@ -67,7 +68,11 @@ function ReverseDemo(props){
 
     const showReverseResolveResults = () =>{
         if (primaryDomain){
-            return(<div id="primaryDomain" className="primaryDomain">{primaryDomain}</div>)
+            return(
+            <div id="primaryDomainWrapper">
+                <DomainCard domain={primaryDomain} />
+                <div id="primaryDomain" className="primaryDomain">{primaryDomain}</div>
+            </div>)
         } else{
             return(<div id="message" className="noDomainMessage">❕There doesn't appear to be a primary domain registered for this address.</div>)
         }

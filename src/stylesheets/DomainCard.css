@@ -1,0 +1,14 @@
+.domain-card-image{
+    width: auto;
+    height: auto;
+    max-width: 40%;
+    max-height: 40%;
+    object-fit: contain;
+    border-radius: 0%;
+    top: 50%;
+    left: 50%;
+}
+
+.domain-card-image-container{
+    margin-top: 10pt;
+}
