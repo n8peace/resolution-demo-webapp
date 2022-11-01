@@ -12,6 +12,7 @@ function UnsDemo(props){
     const [otherData, setOtherData] = useState({});
     const [isRegistered, setIsRegistered] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [ipfsUrl,setIpfsUrl] = useState("");
 
     const getSinglechainData = (data) =>{
         let records = data["records"]
@@ -47,6 +48,7 @@ function UnsDemo(props){
         const temp = {}
         temp["ipfs.html.value"] = records["ipfs.html.value"]
         temp["social.picture.value"] = records["social.picture.value"]
+        setIpfsUrl(temp["ipfs.html.value"])
         setOtherData(temp)
     }
 
@@ -107,6 +109,8 @@ function UnsDemo(props){
                     <h4>Other Data</h4>
                     <div className="info">There are some other cool fields available from on chain data, such as the IPFS hash for a decentralized website and NFT avatar</div>
                     <ClaimsTable showTitle={false} data={otherData}/>
+                    {ipfsUrl && <><br/><b>Preview - IPFS URL</b><br/>
+                    <iframe height="400px" width="75%" src={"https://ipfs.io/ipfs/"+ipfsUrl}></iframe></>}
                     <br/><br/>
 
                 </div>}
