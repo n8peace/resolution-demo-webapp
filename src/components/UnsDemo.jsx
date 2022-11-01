@@ -9,6 +9,7 @@ function UnsDemo(props){
     const [domainData,setDomainData] = useState({});
     const [singlechainData, setSinglechainData] = useState({});
     const [multichainData, setMultichainData] = useState({});
+    const [otherData, setOtherData] = useState({});
     const [isRegistered, setIsRegistered] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -41,6 +42,14 @@ function UnsDemo(props){
         setMultichainData(ordered)
     }
 
+    const getOtherData = (data) =>{
+        let records = data["records"]
+        const temp = {}
+        temp["ipfs.html.value"] = records["ipfs.html.value"]
+        temp["social.picture.value"] = records["social.picture.value"]
+        setOtherData(temp)
+    }
+
     useEffect(()=>{
         async function unsResolve(domain){
             const url = 'https://resolve.unstoppabledomains.com/domains/' + domain;
@@ -68,6 +77,7 @@ function UnsDemo(props){
         if(Object.keys(domainData).length>0){
             getSinglechainData(domainData)
             getMultichainData(domainData)
+            getOtherData(domainData)
         }
     },[domainData])
     
@@ -78,18 +88,27 @@ function UnsDemo(props){
             {!loading && <div id="demoArea">
                 { isRegistered && <div id="registeredDomainDetails">
                     <DomainCard domain={props.domain}/>
+                    
                     <h4>Owner Details</h4>
                     <div className="info">These are all details about the wallet that owns the domain. Note that this is independent to currency records, which are shown later. <br/><br/>The <i>owner</i> is the wallet address that owns the domain. The <i>resolver</i> and <i>registry</i> relate to the smart contracts</div>
                     <ClaimsTable showTitle={false} data={domainData["meta"]}/>
                     <br/><br/>
+                    
                     <h4>Single Chain Records</h4>
                     <div className="info">These are crypto records labeled as "single chain" in UD domain management tool. Notice the json key syntax is crypto.SYMBOL.address </div>
                     <ClaimsTable showTitle={false} data={singlechainData}/>
                     <br/><br/>
+                    
                     <h4>Multi Chain Records</h4>
                     <div className="info">These are crypto records that have multiple chain options for a given currency in UD domain management tool. Notice the json key syntax is different than with single chain records, and includes a field for the chain.</div>
                     <ClaimsTable showTitle={false} data={multichainData}/>
                     <br/><br/>
+
+                    <h4>Other Data</h4>
+                    <div className="info">There are some other cool fields available from on chain data, such as the IPFS hash for a decentralized website and NFT avatar</div>
+                    <ClaimsTable showTitle={false} data={otherData}/>
+                    <br/><br/>
+
                 </div>}
                 { !isRegistered && <div className="alert">❗This domain isn't minted yet. Try another one for more data.</div>}
                 <h4>Full Resolution Data</h4>
