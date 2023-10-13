@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/resolution-demo-webapp/static/css/main.15b0585a.css",
+    "main.js": "/resolution-demo-webapp/static/js/main.3b28d2f2.js",
+    "static/media/loading-text.gif": "/resolution-demo-webapp/static/media/loading-text.643e5057795c0adf8642.gif",
+    "static/media/ud-logo-lockup.svg": "/resolution-demo-webapp/static/media/ud-logo-lockup.20fdef5ae331e8d1e5c03d7610f9adac.svg",
+    "index.html": "/resolution-demo-webapp/index.html",
+    "main.15b0585a.css.map": "/resolution-demo-webapp/static/css/main.15b0585a.css.map",
+    "main.3b28d2f2.js.map": "/resolution-demo-webapp/static/js/main.3b28d2f2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.15b0585a.css",
+    "static/js/main.3b28d2f2.js"
+  ]
+}
