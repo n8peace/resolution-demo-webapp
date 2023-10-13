@@ -3,6 +3,7 @@ import "../stylesheets/Resolution.css"
 import ClaimsTable from "./ClaimsTable";
 import loadingGif from "../assets/loading-text.gif"
 import DomainCard from "./DomainCard";
+import axios from "axios";
 
 function UnsDemo(props){
 
@@ -54,16 +55,18 @@ function UnsDemo(props){
 
     useEffect(()=>{
         async function unsResolve(domain){
-            const url = 'https://resolve.unstoppabledomains.com/domains/' + domain;
-            const options = {
-                method: 'GET',
-                headers: {
-                Authorization: 'Bearer 67c85c9d-0123-447f-9662-971534f96319',
-                },
-            };
         setLoading(true)
-        const response = await fetch(url, options);
-        const data = await response.json();
+        const response = await axios
+            .get(`https://api.unstoppabledomains.com/resolve/domains/${domain}`, {
+                headers: {
+                    'Authorization': 'Bearer 23etr7k0esbms00x4vnb4ofyp8v2y8nw'
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        console.log(response.data)
+        const data = response.data;
         setDomainData(data)
         setLoading(false)
         if(data["meta"]["owner"]){

@@ -2,19 +2,21 @@ import { useState, useEffect } from "react";
 import "../stylesheets/Resolution.css"
 import loadingGif from "../assets/loading-text.gif"
 import DomainCard from "./DomainCard"
+import axios from "axios";
 
 const getDomainsByOwner = async(address,resultsHandler,loadingHandler) =>{
     loadingHandler(true)
-    const url = "https://resolve.unstoppabledomains.com/domains?owners="+address;
-    const options = {
-        method: "GET",
-        headers: {
-            "Authorization": "Bearer 67c85c9d-0123-447f-9662-971534f96319"
-        }
-    }
-
-    const response = await fetch(url,options)
-    const data = await response.json();
+    const response = await axios
+        .get(`https://api.unstoppabledomains.com/resolve/domains?owners=${address}`, {
+            headers: {
+                'Authorization': 'Bearer 23etr7k0esbms00x4vnb4ofyp8v2y8nw'
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    console.log(response.data)
+    const data = response.data;
     const results = []
     data["data"].forEach(function (item, index){
         results.push(item["id"])
@@ -25,15 +27,17 @@ const getDomainsByOwner = async(address,resultsHandler,loadingHandler) =>{
 
 const reverseResolve = async(address,resultsHandler, loadingHandler) =>{
     loadingHandler(true)
-    const url = "https://resolve.unstoppabledomains.com/reverse/"+address;
-    const options = {
-        method: "GET",
-        headers: {
-            "Authorization": "Bearer 67c85c9d-0123-447f-9662-971534f96319"
-        }
-    }
-    const response = await fetch(url,options)
-    const data = await response.json();
+    const response = await axios
+        .get(`https://api.unstoppabledomains.com/resolve/reverse/${address}`, {
+            headers: {
+                'Authorization': 'Bearer 23etr7k0esbms00x4vnb4ofyp8v2y8nw'
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    console.log(response.data)
+    const data = response.data;
     resultsHandler(data["meta"]["domain"])
     loadingHandler(false)
 }

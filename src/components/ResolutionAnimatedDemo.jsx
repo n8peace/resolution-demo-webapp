@@ -17,7 +17,7 @@ function ResolutionAnimatedDemo(){
     // Get UNS Tlds. Grabbing this fron an endpoint since Unstoppable adds new TLDs frequently, so this wills tay updated
     useEffect( () => {
         async function getUnsTlds(){
-            const url = 'https://resolve.unstoppabledomains.com/supported_tlds';
+            const url = 'https://api.unstoppabledomains.com/resolve/supported_tlds';
             const response = await fetch(url);
             const data = await response.json();
             setUnsTlds(data['tlds'])
